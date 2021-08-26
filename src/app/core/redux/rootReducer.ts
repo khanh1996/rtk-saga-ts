@@ -11,7 +11,7 @@ import { getTracksSlice } from '../features/track/tracks/tracksSlice';
 const counterReducer = combineReducers({
   getCounter: counterSlice.reducer,
 });
-
+console.log('a');
 const customerReducer = combineReducers({
   login: loginSlice.reducer,
 });
