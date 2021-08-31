@@ -23,7 +23,7 @@ function* handleGetModuleAndParentTrack(action: PayloadAction<ModuleTrack>) {
     if (data) {
       yield put(getModuleAndParentTrackSuccess(data));
     }
-  } catch (errors) {
+  } catch (errors: any) {
     yield put(getModuleAndParentTrackFailure(errors.message));
   }
 }

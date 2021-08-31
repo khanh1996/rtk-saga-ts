@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import history from 'app/ui/utils/history';
+import { history } from 'app/ui/utils';
 import Cookies from 'js-cookie';
 import { put, takeLatest } from 'redux-saga/effects';
 import { loginFailure, LoginParam, loginSlice, loginSuccess } from './loginSlice';
@@ -17,7 +17,7 @@ function* handleLogin(action: PayloadAction<LoginParam>) {
       console.log('history push');
       history.push('/customer/info');
     }
-  } catch (error) {
+  } catch (error: any) {
     yield put(loginFailure(error.message));
   }
 }

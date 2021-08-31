@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { counterSlice } from 'app/ui/counter/counterSlice';
-import history from 'app/ui/utils/history';
+import { history } from 'app/ui/utils';
 import { connectRouter } from 'connected-react-router';
 import { loginSlice } from '../features/customer/login/loginSlice';
 import { getModuleAndParentTrackSlice } from '../features/module/moduleTrackSlice';

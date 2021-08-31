@@ -19,7 +19,7 @@ function* handleGetTrackDetailSaga(action: PayloadAction<String>) {
     if (data) {
       yield put(getTrackDetailSuccess(data));
     }
-  } catch (errors) {
+  } catch (errors: any) {
     yield put(getTrackDetailFailure(errors.message));
   }
 }

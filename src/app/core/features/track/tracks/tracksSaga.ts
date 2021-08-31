@@ -17,7 +17,7 @@ function* handleGetTracksSaga() {
     if (data) {
       yield put(getTracksSuccess(data));
     }
-  } catch (errors) {
+  } catch (errors: any) {
     yield put(getTracksFailure(errors.message));
   }
 

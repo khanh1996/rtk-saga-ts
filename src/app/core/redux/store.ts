@@ -1,9 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
+import { routerMiddleware } from 'connected-react-router';
 import rootSaga from './rootSaga';
 import rootReducer from './rootReducer';
-import { routerMiddleware } from 'connected-react-router';
-import history from 'app/ui/utils/history';
+
+import { history } from 'app/ui/utils';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -14,7 +15,7 @@ export const store = configureStore({
       thunk: true,
       immutableCheck: true, // turn middleware immutable of RTK
       serializableCheck: true, // turn middleware serializable of RTK
-    }).concat(sagaMiddleware, routerMiddleware(history)),
+    }).concat(sagaMiddleware, routerMiddleware(history)), // add other middleware
   devTools: true, // open React Developer Tools
 });
 

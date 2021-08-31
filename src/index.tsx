@@ -1,22 +1,19 @@
+import { history } from 'app/ui/utils';
+import GlobalStyles from 'app/ui/utils/globalStyles';
+import { ConnectedRouter } from 'connected-react-router';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './App';
 import { store } from './app/core/redux/store';
-import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import GlobalStyles from 'app/ui/utils/globalStyles';
-import { SessionContextProvider } from 'app/ui/hooks/useSessionContext';
-import { ConnectedRouter } from 'connected-react-router';
-import history from 'app/ui/utils/history';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <GlobalStyles />
-        <SessionContextProvider>
-          <App />
-        </SessionContextProvider>
+        <App />
       </ConnectedRouter>
     </Provider>
   </React.StrictMode>,

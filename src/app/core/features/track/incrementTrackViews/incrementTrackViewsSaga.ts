@@ -23,7 +23,7 @@ export function* handleIncrementTrackViewsSaga(action: PayloadAction<String>) {
     if (data && data?.incrementTrackViews.success) {
       yield put(getTrackDetail(trackId));
     }
-  } catch (errors) {
+  } catch (errors: any) {
     yield put(incrementTrackViewsFailure(errors.message));
   }
 }
