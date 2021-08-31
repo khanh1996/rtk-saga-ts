@@ -1,5 +1,5 @@
 const CustomerInfoPage = () => {
-  return <div>CustomerInfoPage</div>;
+  return <div key={Math.random()}>CustomerInfoPage</div>;
 };
 
 export default CustomerInfoPage;

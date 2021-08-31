@@ -1,7 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { history } from 'app/ui/utils';
 import Cookies from 'js-cookie';
-import { put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { loginFailure, LoginParam, loginSlice, loginSuccess } from './loginSlice';
 
 function* handleLogin(action: PayloadAction<LoginParam>) {
@@ -14,8 +14,7 @@ function* handleLogin(action: PayloadAction<LoginParam>) {
     Cookies.set('customer_token', data.token);
     if (data) {
       yield put(loginSuccess(data));
-      console.log('history push');
-      history.push('/customer/info');
+      history.push('/customer/tracks');
     }
   } catch (error: any) {
     yield put(loginFailure(error.message));
