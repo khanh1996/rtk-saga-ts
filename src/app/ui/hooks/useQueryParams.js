@@ -15,7 +15,6 @@ const useQueryParams = (initialParams) => {
 
     return parse(searchQuery);
   }, [search, initialParams]);
-  console.log('useQuery=> ', query);
 
   const setQuery = useCallback(
     (nextParams, method = 'push') => {
