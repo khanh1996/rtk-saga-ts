@@ -9,9 +9,14 @@ export interface LoginParam {
 
 export const loginSlice = createReduxSlice<LoginParam>('login');
 
-export const { request: login, success: loginSuccess, failure: loginFailure } = loginSlice.actions;
+export const {
+  request: login,
+  success: loginSuccess,
+  failure: loginFailure,
+  reset: resetToken,
+} = loginSlice.actions;
 
 export const loginSelector = createSelector(
   (state: RootState) => state.customer.login,
-  (item) => item
+  (item: any) => item
 );

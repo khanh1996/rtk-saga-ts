@@ -1,11 +1,13 @@
-import { login, LoginParam } from 'app/core/features/customer/login/loginSlice';
-import { useAppDispatch } from 'app/core/redux/hooks';
+import { login, LoginParam, loginSelector } from 'app/core/features/customer/login/loginSlice';
+import { useAppDispatch, useAppSelector } from 'app/core/redux/hooks';
+import Loading from 'app/ui/components/common/Loading';
 import { useSessionContext } from 'app/ui/hooks/useSessionContext';
 import { colors } from 'app/ui/utils/styles';
 import styled from 'styled-components';
 
 const CustomerLoginPage = () => {
   const dispatch = useAppDispatch();
+  const { isFetching } = useAppSelector(loginSelector);
   function onClickLogin() {
     const paramLogin: LoginParam = {
       email: ' email@gmail.com',
@@ -15,7 +17,9 @@ const CustomerLoginPage = () => {
   }
   return (
     <div>
-      <ButtonLogin onClick={onClickLogin}>LOGIN</ButtonLogin>
+      <ButtonLogin onClick={onClickLogin}>
+        {isFetching ? <Loading width="30px" height="30px" borderWidth="3px" /> : 'Login'}
+      </ButtonLogin>
     </div>
   );
 };

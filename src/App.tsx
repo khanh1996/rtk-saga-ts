@@ -1,10 +1,23 @@
+import { useAppDispatch } from 'app/core/redux/hooks';
 import CustomerLayout from 'app/ui/layout/CustomerLayout/CustomerLayout';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import logo from './logo.svg';
 
 function App() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    console.log('action UPDATE_CUSTOMER_INFO');
+    dispatch({
+      type: 'UPDATE_CUSTOMER_INFO',
+      payload: {
+        id: 1,
+        level: 2,
+        name: 'khanh',
+      },
+    });
+  }, []);
   return (
     <Switch>
       <Route path="/" exact>

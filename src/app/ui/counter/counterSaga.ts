@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { delay, put, takeEvery } from 'redux-saga/effects';
+import { call, delay, fork, put, take, takeEvery } from 'redux-saga/effects';
 import {
   increment,
   incrementAsyncSaga,
@@ -18,7 +18,6 @@ function* handleIncrementAsyncSaga(action: PayloadAction<number>) {
 }
 
 export default function* counterSaga() {
-  console.log('counterSaga');
   yield takeEvery(increment.type, logIncrement);
   yield takeEvery(incrementAsyncSaga.toString(), handleIncrementAsyncSaga);
 }

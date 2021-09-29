@@ -1,0 +1,36 @@
+.head-popup-basic {
+    background: #f0f0f0;
+    color: #494644;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    padding: 10px 20px;
+    .popup-action-close {
+        position: absolute;
+        top: 0px;
+        right: 20px;
+        display: block;
+        color: #555455;
+        z-index: 1;
+        border: none;
+        cursor: pointer;
+        background: none;
+        box-shadow: none;
+        &::before,
+        &::after {
+            position: absolute;
+            left: 14px;
+            top: 4px;
+            content: " ";
+            height: 18px;
+            width: 2px;
+            background-color: #555455;
+        }
+        &:before {
+            transform: rotate(45deg);
+        }
+        &:after {
+            transform: rotate(-45deg);
+        }
+    }
+}

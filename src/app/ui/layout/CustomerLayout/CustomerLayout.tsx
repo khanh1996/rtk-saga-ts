@@ -6,11 +6,10 @@ import UnauthCustomerLayout from './UnauthCustomerLayout/UnauthCustomerLayout';
 import Footer from 'app/ui/components/common/footer';
 import Tracks from 'app/ui/pages/Tracks/TracksPage';
 import { useSessionContext } from 'app/ui/hooks/useSessionContext';
-import Cookies from 'js-cookie';
 
 function CustomerLayout() {
   const { path } = useRouteMatch();
-  const isAuth = Boolean(Cookies.get('customer_token'));
+  const isAuth = Boolean(localStorage.getItem('customer_token'));
   console.log('CustomerLayout', isAuth);
   if (!isAuth) {
     return (

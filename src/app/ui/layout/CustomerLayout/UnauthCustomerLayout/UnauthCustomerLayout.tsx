@@ -9,13 +9,13 @@ import TrackDetailPage from 'app/ui/pages/Tracks/TracksDetailPage';
 import ModulePage from 'app/ui/pages/Module/ModulePage';
 import NotFound from 'app/ui/components/common/NotFound';
 import { ProtectedRoute, ProtectedRouteProps } from 'app/ui/router';
-import Cookies from 'js-cookie';
+import ListPage from 'app/ui/pages/List';
 
 const UnauthCustomerLayout = () => {
   const { path } = useRouteMatch();
 
   const defaultProtectedRouteProps: ProtectedRouteProps = {
-    isAuthenticated: Boolean(Cookies.get('customer_token')),
+    isAuthenticated: Boolean(localStorage.getItem('customer_token')),
     authenticationPath: '/customer/login',
   };
   return (
@@ -25,6 +25,10 @@ const UnauthCustomerLayout = () => {
         <Route path={`${path}/login`} exact>
           <CustomerLoginPage />
         </Route>
+        <Route path={`${path}/list`} exact>
+          <ListPage />
+        </Route>
+
         {/* <Route path={`${path}/tracks`} exact>
           <TracksPage />
         </Route> */}

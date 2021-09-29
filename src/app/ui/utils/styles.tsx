@@ -8,6 +8,7 @@ export const widths = {
   textPageWidth: 800,
 };
 export const colors = {
+  white: '#ffffff',
   primary: '#7156d9',
   secondary: '#41d9d3',
   accent: '#f25cc1',

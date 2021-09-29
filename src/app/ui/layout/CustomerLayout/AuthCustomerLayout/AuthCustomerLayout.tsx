@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Redirect, Route, Switch, useLocation, useRouteMatch } from 'react-router-dom';
 import { ProtectedRoute, ProtectedRouteProps } from 'app/ui/router';
 import CustomerInfoPage from 'app/ui/pages/Customer/CustomerInfoPage';
-import Cookies from 'js-cookie';
 import { useSessionContext } from 'app/ui/hooks/useSessionContext';
 import CustomerLoginPage from 'app/ui/pages/Customer/CustomerLoginPage';
 import Header from 'app/ui/components/common/header';
@@ -12,13 +11,14 @@ import TracksPage from 'app/ui/pages/Tracks/TracksPage';
 import NotFound from 'app/ui/components/common/NotFound';
 import TrackDetailPage from 'app/ui/pages/Tracks/TracksDetailPage';
 import ModulePage from 'app/ui/pages/Module/ModulePage';
+import QueryPage from 'app/ui/pages/Query';
 
 const AuthCustomerLayout = () => {
   const { path } = useRouteMatch();
   const currentLocation = useLocation();
 
   const defaultProtectedRouteProps: ProtectedRouteProps = {
-    isAuthenticated: Boolean(Cookies.get('customer_token')),
+    isAuthenticated: Boolean(localStorage.getItem('customer_token')),
     authenticationPath: '/customer/login',
   };
   return (
@@ -40,6 +40,10 @@ const AuthCustomerLayout = () => {
           exact
         >
           <ModulePage />
+        </ProtectedRoute>
+
+        <ProtectedRoute {...defaultProtectedRouteProps} path={`${path}/query`} exact>
+          <QueryPage />
         </ProtectedRoute>
         <ProtectedRoute {...defaultProtectedRouteProps} path="*">
           <Redirect to={`${path}/tracks`}></Redirect>

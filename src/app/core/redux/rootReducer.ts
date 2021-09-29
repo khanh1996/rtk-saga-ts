@@ -3,6 +3,7 @@ import { counterSlice } from 'app/ui/counter/counterSlice';
 import { history } from 'app/ui/utils';
 import { connectRouter } from 'connected-react-router';
 import { loginSlice } from '../features/customer/login/loginSlice';
+import { logoutSlice } from '../features/customer/logout/logoutSlice';
 import { getModuleAndParentTrackSlice } from '../features/module/moduleTrackSlice';
 import { incrementTrackViewsSlice } from '../features/track/incrementTrackViews/incrementTrackViewsSlice';
 import { getTrackDetailSlice } from '../features/track/trackDetail/trackDetailSlice';
@@ -13,6 +14,7 @@ const counterReducer = combineReducers({
 });
 const customerReducer = combineReducers({
   login: loginSlice.reducer,
+  logout: logoutSlice.reducer,
 });
 
 const moduleTrackReducer = combineReducers({

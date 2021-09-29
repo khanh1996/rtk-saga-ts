@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../../assets/images/space_cat_logo.png';
-import { colors, widths } from 'app/ui/utils/styles';
+import { Button, colors, IconDoubleArrowRight, widths } from 'app/ui/utils/styles';
+import { useAppDispatch, useAppSelector } from 'app/core/redux/hooks';
+import { logout, logoutSelector } from 'app/core/features/customer/logout/logoutSlice';
+import Loading from './Loading';
+import { loginSelector } from 'app/core/features/customer/login/loginSlice';
 
 /**
  * Header renders the top navigation
@@ -12,6 +16,20 @@ interface Props {
   children?: any;
 }
 const Header = ({ children }: Props) => {
+  const dispatch = useAppDispatch();
+  const { isFetching, data } = useAppSelector(logoutSelector);
+  const { data: customer } = useAppSelector(loginSelector);
+  const isShowButtonLogout = Boolean(localStorage.getItem('customer_token'));
+  function onClickLogout() {
+    console.log('onClickLogout');
+    dispatch(logout());
+  }
+  console.log(data);
+  console.log('token');
+  console.log('isFetching', isFetching);
+
+  console.log('isShowButtonLogout', isShowButtonLogout);
+
   return (
     <HeaderBar>
       <Container>
@@ -27,6 +45,11 @@ const Header = ({ children }: Props) => {
               </Title>
             </HomeButton>
           </HomeLink>
+          {customer?.token && (
+            <ButtonLogout onClick={onClickLogout} color="#f25cc1">
+              {isFetching ? <Loading width="30px" height="30px" borderWidth="3px" /> : 'Logout'}
+            </ButtonLogout>
+          )}
         </HomeButtonContainer>
         {children}
       </Container>
@@ -57,9 +80,23 @@ const HomeLink = styled(Link)({
   textDecoration: 'none',
 });
 
+const ButtonLogout = styled(Button)`
+  background-color: ${colors.accent};
+  border-radius: 4px;
+  border-width: 0px;
+  cursor: pointer;
+  font-size: 18px;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: ${colors.white};
+  height: 33px;
+`;
+
 const HomeButtonContainer = styled.div({
   display: 'flex',
   flex: 1,
+  justifyContent: 'space-between',
+  alignItems: 'center',
 });
 
 const HomeButton = styled.div({
